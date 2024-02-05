@@ -4,11 +4,13 @@ const dotenv = require('dotenv');
 dotenv.config({path:"./config/config.env"})
 
 const moviesRouter = require('./Router/moviesRouter');
+const userRouter = require('./Router/userRouter')
 const CustomError = require('./utils/CostomError');
 const globalErrorController = require('./moviesController/ErrorHadlerGlobal')
 app.use(express.json())
 app.use(express.static('./public'))
 app.use('/api/v1/movies',moviesRouter)
+app.use('/api/v1/user',userRouter)
 app.all('*',(req,res,next)=>{
 //  let err = new Error(`This route ${req.originalUrl} not handle by seerver `);
 //  err.status = 'Fail',
