@@ -5,8 +5,9 @@ const userController = require('../moviesController/userController');
 
 
 
-router.route('/Allusers').get(userController.protect,userController.getAlluser)
-router.route('/createUser').post(userController.createUser)
+router.route('/Allusers').get(userController.getAlluser)
+router.route('/createUser').post(userController.createUser);
+router.route('/sign').post(userController.signUp)
 
 
 

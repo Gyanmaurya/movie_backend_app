@@ -50,12 +50,11 @@ userSchema.methods.comparedPas =async function(pass,passDB){
  return bcrypt.compare(pass,passDB)
 }
 
-userSchema.methods.isPasswordChanged =async function(isTimestamptoken){
+userSchema.methods.isPasswordChanged = async function(isTimestamptoken){
 if(this.passwordchangeAt){
      const psdTimestamp = parseInt(this.passwordchangeAt.getTime()/1000,10);
      return isTimestamptoken<psdTimestamp
 }
-
 return false
 }
 
