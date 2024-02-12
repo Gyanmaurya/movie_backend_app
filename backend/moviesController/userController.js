@@ -88,3 +88,15 @@ exports.protect = asyncErrorHandler(async(req,res,next)=>{
     req.user=user
 next()
 })
+
+exports.restrict = (role)=>{
+
+     return (req,res,next)=>{
+          
+          if(req.user.role !== role){
+             const err = new CustomError('You are not authrize person to delete the movie', 404)  ;
+             next(err)
+          }
+          next()
+     }
+}

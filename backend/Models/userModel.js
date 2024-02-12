@@ -36,13 +36,20 @@ const userSchema = mongoose.Schema({
         
 
      },
+     role:{
+          type:String,
+          enum:["admin","user"],
+          default:"user"
+     },
      passwordchangeAt:Date
 })
 
 userSchema.pre('save', async function(next){
-     if(this.isModified('password')) return next()
+    console.log(this.isModified('password'))
+     if(!this.isModified('password')) return next()
      this.password = await bcrypt.hashSync(this.password, 8);
     this.conformepassword = undefined
+    console.log(this.password)
    next()
 })
 
