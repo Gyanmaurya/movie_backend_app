@@ -49,6 +49,11 @@ const userSchema = mongoose.Schema({
      },
      resetPasswordExpire: {
           type:Date
+      },
+      Active:{
+          type:Boolean,
+          default:true,
+          select:false
       }
 })
 
@@ -60,6 +65,10 @@ userSchema.pre('save', async function(next){
     console.log(this.password)
    next()
 })
+// userSchema.pre(/^find/,async function(next){
+//    await this.find({active:{$ne:false}})
+//      next()
+// })
 
 userSchema.methods.comparedPas =async function(pass,passDB){
  return bcrypt.compare(pass,passDB)
